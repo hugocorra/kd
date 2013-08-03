@@ -21,6 +21,7 @@ IF(Boost_FOUND)
 
     # diretórios de inclusão
     INCLUDE_DIRECTORIES($ENV{BOOST_ROOT})
+    LINK_DIRECTORIES($ENV{BOOST_ROOT}/stage/lib)
 
     # diretórios com bibliotecas.
 

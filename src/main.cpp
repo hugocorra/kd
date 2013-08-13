@@ -22,11 +22,11 @@ namespace po = boost::program_options;
 
 typedef std::map<std::string, std::string> MapAlias;
 
-std::string getStorageFile()
-{
-    //std::string directory(std::getenv(BOOST_WINDOWS ? "HOMEPATH" :  "HOME"));
+// std::string getStorageFile()
+// {
+//     //std::string directory(std::getenv(BOOST_WINDOWS ? "HOMEPATH" :  "HOME"));
     
-}
+// }
 
 // add a new alias or throw in case it already exists.
 void add(const std::string& alias, const std::string& path, MapAlias& map_alias)

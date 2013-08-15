@@ -9,7 +9,7 @@
 
 #include <boost/algorithm/string/split.hpp>
 #include <boost/program_options.hpp>
-#include <boost/filesystem/operations.hpp>
+#include <boost/filesystem.hpp>
 
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
@@ -24,8 +24,10 @@ typedef std::map<std::string, std::string> MapAlias;
 
 std::string getStorageFile()
 {
-    //std::string directory(std::getenv(BOOST_WINDOWS ? "HOMEPATH" :  "HOME"));
-    
+    boost::filesystem::path path;
+    path = std::getenv(BOOST_WINDOWS ? "HOMEPATH" :  "HOME");
+    path /= ".kd_database";
+    return path.string();
 }
 
 // add a new alias or throw in case it already exists.
@@ -77,7 +79,7 @@ void list(const MapAlias& map_alias)
 // serialize the map of aliases.
 void save(const MapAlias& map_alias)
 {
-    std::ofstream ofs("db");
+    std::ofstream ofs(getStorageFile());
 
     if (ofs.is_open())
     {
@@ -89,7 +91,7 @@ void save(const MapAlias& map_alias)
 // deserialize the map of aliases.
 void load(MapAlias& map_alias)
 {
-    std::ifstream ifs("db");
+    std::ifstream ifs(getStorageFile());
 
     if (ifs.is_open())
     {
@@ -108,6 +110,8 @@ void load(MapAlias& map_alias)
 
  int main(int argc, char *argv[])
 {
+    getStorageFile();
+
     MapAlias map_alias;
 
     load(map_alias);

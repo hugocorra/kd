@@ -22,6 +22,7 @@ namespace po = boost::program_options;
 
 typedef std::map<std::string, std::string> MapAlias;
 
+
 std::string getStorageFile()
 {
     boost::filesystem::path path;
